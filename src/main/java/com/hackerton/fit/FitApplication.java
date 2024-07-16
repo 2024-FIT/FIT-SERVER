@@ -1,4 +1,4 @@
-package com.hackerton.FIT;
+package com.hackerton.fit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
