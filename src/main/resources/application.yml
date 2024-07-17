@@ -13,5 +13,11 @@ spring:
         format_sql: true
         show_sql: true
 
+application:
+  jwt:
+    secretKey: d463d45e8ada6fa9e51889c7fe788176bcc6b971ab73ca6b3901a5e90f74b1461b6952b69aba80aaaaac357641b7bcac22f26e55db02f9b7e939ecf47ec23d02
+    accessExpiration: 1800000
+    refreshExpiration: 1209600000
+
 server:
   port: 8080

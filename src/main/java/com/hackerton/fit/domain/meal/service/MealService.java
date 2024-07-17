@@ -1,4 +1,4 @@
-package com.hackerton.fit.service;
+package com.hackerton.fit.domain.meal.service;
 
 import com.hackerton.fit.dto.NutritionDataDTO;
 import com.hackerton.fit.entity.FoodDataResponse;

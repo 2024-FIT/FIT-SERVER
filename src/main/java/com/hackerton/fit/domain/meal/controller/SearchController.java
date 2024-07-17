@@ -1,7 +1,7 @@
-package com.hackerton.fit.controller;
+package com.hackerton.fit.domain.meal.controller;
 
+import com.hackerton.fit.domain.meal.service.MealService;
 import com.hackerton.fit.dto.NutritionDataDTO;
-import com.hackerton.fit.service.MealService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
