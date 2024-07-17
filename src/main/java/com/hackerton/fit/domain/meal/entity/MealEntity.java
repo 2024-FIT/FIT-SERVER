@@ -22,7 +22,25 @@ public class MealEntity extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mealId;
 
-    private String mealName;
+    private String FOOD_CD;
+
+    private Long NUTR_CONT1;
+
+    private Long NUTR_CONT2;
+
+    private Long NUTR_CONT3;
+
+    private Long NUTR_CONT4;
+
+    private Long NUTR_CONT5;
+
+    private Long NUTR_CONT6;
+
+    private Long NUTR_CONT7;
+
+    private Long NUTR_CONT8;
+
+    private Long NUTR_CONT9;
 
     @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MealTimeEntity> mealTimeEntities;
