@@ -1,7 +1,7 @@
-package com.hackerton.fit.dto;
+package com.hackerton.fit.domain.meal.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hackerton.fit.entity.FoodItem;
+import com.hackerton.fit.domain.meal.entity.FoodItem;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
