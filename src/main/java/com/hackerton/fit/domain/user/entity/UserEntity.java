@@ -29,6 +29,8 @@ public class UserEntity {
 
     private Float weight;
 
+    private Float activityLevel;
+
     private Long age;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
