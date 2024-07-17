@@ -28,10 +28,6 @@ public class MealTimeService {
 
 
     public void save(MealTimeResponse mealTimeResponse) {
-
-        User user = getCurrentService.getUser();
-        UserEntity userEntity = userMapper.=
-
         MealEntity meal = mealService.save(mealTimeResponse.getMeal());
 
         mealTimeRepository.save(mealTimeResponse.toEntity(meal));
