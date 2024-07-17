@@ -33,7 +33,8 @@ public class UserService {
         try {
             userRepository.save(UserEntity.builder()
                     .userId(null)
-                    .userPassword(new BCryptPasswordEncoder().encode(userReq.getPassword()))                    .userName(userReq.getName())
+                    .userPassword(new BCryptPasswordEncoder().encode(userReq.getPassword()))
+                    .userName(userReq.getName())
                     .age(userReq.getAge())
                     .height(userReq.getHeight())
                     .weight(userReq.getWeight())
