@@ -41,6 +41,7 @@ public class UserService {
                     .weight(userReq.getWeight())
                     .age(userReq.getAge())
                     .activityLevel(userReq.getActivityLevel())
+                    .gender(userReq.getGender())
                     .build());
         } catch (Exception e) {
             throw new RuntimeException("Failed to save user", e);
