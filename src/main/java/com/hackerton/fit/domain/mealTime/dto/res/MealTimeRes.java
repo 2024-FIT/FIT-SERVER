@@ -1,9 +1,6 @@
 package com.hackerton.fit.domain.mealTime.dto.res;
 
 import com.hackerton.fit.domain.meal.entity.MealEntity;
-import com.hackerton.fit.domain.mealTime.service.enums.MealTimeEnums;
-
-import java.time.LocalDate;
 
 public record MealTimeRes(
         String mealTimeEnum,

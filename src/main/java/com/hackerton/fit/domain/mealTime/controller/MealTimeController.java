@@ -1,6 +1,8 @@
 package com.hackerton.fit.domain.mealTime.controller;
 
+import com.hackerton.fit.domain.mealTime.dto.DateReq;
 import com.hackerton.fit.domain.mealTime.dto.MealTimeReq;
+import com.hackerton.fit.domain.mealTime.dto.res.CalorieRes;
 import com.hackerton.fit.domain.mealTime.dto.res.MealTimeRes;
 import com.hackerton.fit.domain.mealTime.service.MealTimeService;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +26,10 @@ public class MealTimeController {
     @GetMapping("/today")
     public List<MealTimeRes> getTodayMealTime(@RequestParam LocalDate day) {
         return mealTimeService.findByTime(day);
+    }
+
+    @GetMapping("/month-calorie")
+    public List<CalorieRes> getMonthCalorieMealTime(@RequestParam DateReq days) {
+        return mealTimeService.findCalories(days);
     }
 }

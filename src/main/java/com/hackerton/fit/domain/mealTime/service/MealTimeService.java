@@ -2,7 +2,9 @@ package com.hackerton.fit.domain.mealTime.service;
 
 import com.hackerton.fit.domain.meal.entity.MealEntity;
 import com.hackerton.fit.domain.meal.service.MealService;
+import com.hackerton.fit.domain.mealTime.dto.DateReq;
 import com.hackerton.fit.domain.mealTime.dto.MealTimeReq;
+import com.hackerton.fit.domain.mealTime.dto.res.CalorieRes;
 import com.hackerton.fit.domain.mealTime.dto.res.MealTimeRes;
 import com.hackerton.fit.domain.mealTime.entity.MealTimeEntity;
 import com.hackerton.fit.domain.mealTime.repository.MealTimeRepository;
@@ -28,6 +30,16 @@ public class MealTimeService {
         MealEntity meal = mealService.save(mealTimeReq.getMeal());
 
         mealTimeRepository.save(mealTimeReq.toEntity(meal));
+    }
+
+    public List<CalorieRes> findCalories(DateReq dates) {
+        ArrayList<CalorieRes> calories = new ArrayList<>();
+        for (MealTimeEntity mealTimeEntity : mealTimeRepository.findAllByTimeBetween(dates.getStartDay(), dates.getEndDay())) {
+            CalorieRes calorieRes = CalorieRes.withId(mealTimeEntity);
+            calories.add(calorieRes);
+        };
+
+        return calories;
     }
 
     public List<MealTimeRes> findByTime(LocalDate time) {
