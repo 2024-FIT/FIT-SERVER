@@ -2,17 +2,14 @@ package com.hackerton.fit.domain.mealTime.service;
 
 import com.hackerton.fit.domain.meal.entity.MealEntity;
 import com.hackerton.fit.domain.meal.service.MealService;
-import com.hackerton.fit.domain.mealTime.dto.MealTimeDTO;
-import com.hackerton.fit.domain.mealTime.dto.MealTimeResponse;
+import com.hackerton.fit.domain.mealTime.dto.MealTimeReq;
+import com.hackerton.fit.domain.mealTime.dto.res.MealTimeRes;
 import com.hackerton.fit.domain.mealTime.entity.MealTimeEntity;
 import com.hackerton.fit.domain.mealTime.repository.MealTimeRepository;
-import com.hackerton.fit.domain.user.dto.User;
-import com.hackerton.fit.domain.user.entity.UserEntity;
 import com.hackerton.fit.domain.user.mapper.UserMapper;
 import com.hackerton.fit.domain.user.service.GetCurrentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import springfox.documentation.swagger2.mappers.ModelMapper;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,21 +24,22 @@ public class MealTimeService {
     private final UserMapper userMapper;
 
 
-    public void save(MealTimeResponse mealTimeResponse) {
+    public void save(MealTimeReq mealTimeReq) {
+        MealEntity meal = mealService.save(mealTimeReq.getMeal());
 
-        User user = getCurrentService.getUser();
-        UserEntity userEntity = userMapper.=
-
-        MealEntity meal = mealService.save(mealTimeResponse.getMeal());
-
-        mealTimeRepository.save(mealTimeResponse.toEntity(meal));
+        mealTimeRepository.save(mealTimeReq.toEntity(meal));
     }
 
-    public List<MealTimeDTO> findByTime(LocalDate time) {
-        List<MealTimeDTO> mealTimeDTOS = new ArrayList<>();
+    public List<MealTimeRes> findByTime(LocalDate time) {
+
+        ArrayList<MealTimeRes> mealTimeDTOS = new ArrayList<>();
+
         for (MealTimeEntity entity :mealTimeRepository.findAllByTime(time)) {
-            mealTimeDTOS.add(new MealTimeDTO(entity));
+            MealTimeRes mealTimeRes = MealTimeRes.withId(String.valueOf(entity.getMealTimeEnum()), entity.getMeal());
+            mealTimeDTOS.add(mealTimeRes);
         }
+
+
         return mealTimeDTOS;
     }
 }

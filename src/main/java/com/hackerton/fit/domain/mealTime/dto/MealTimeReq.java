@@ -9,7 +9,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class MealTimeResponse {
+public class MealTimeReq {
     private LocalDate time;
 
     private MealTimeEnums mealTimeEnum;
