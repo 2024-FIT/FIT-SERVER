@@ -1,16 +1,24 @@
 package com.hackerton.fit.service;
 
+import com.hackerton.fit.client.MealClient;
+import com.hackerton.fit.dto.FoodDataDto;
+import com.hackerton.fit.entity.FoodDataEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
 public class MealService {
-    private final RestTemplate restTemplate;
+    private final MealClient mealClient;
 
-    public String getData(String foodName) {
-        String uri = "http://openapi.foodsafetykorea.go.kr/api/sample/I2790/json/1/5/DESC_KOR=" + foodName;
-        return restTemplate.getForObject(uri, String.class);
+    public List<FoodDataDto> getData(String foodName) {
+         FoodDataEntity foodData = mealClient.getData(foodName);
+        return foodData.getFoodData().getRow().stream()
+                .map(FoodDataDto::of)
+//                 .map(FoodDataDto::of)
+                 .toList();
     }
 }
