@@ -4,6 +4,7 @@ import com.hackerton.fit.domain.mealTime.entity.MealTimeEntity;
 import com.hackerton.fit.global.common.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -22,27 +23,26 @@ public class MealEntity extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mealId;
 
-    private String FOOD_CD;
+    private String descKor;
 
-    private Long NUTR_CONT1;
+    private Float calorie;
 
-    private Long NUTR_CONT2;
+    private Float carbohydrate;
 
-    private Long NUTR_CONT3;
+    private Float protein;
 
-    private Long NUTR_CONT4;
+    private Float province;
 
-    private Long NUTR_CONT5;
+    private Float sugar;
 
-    private Long NUTR_CONT6;
+    private Float salt;
 
-    private Long NUTR_CONT7;
+    private Float cholesterol;
 
-    private Long NUTR_CONT8;
+    private Float saturatedFat;
 
-    private Long NUTR_CONT9;
+    private Float transFat;
 
     @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MealTimeEntity> mealTimeEntities;
-
 }
