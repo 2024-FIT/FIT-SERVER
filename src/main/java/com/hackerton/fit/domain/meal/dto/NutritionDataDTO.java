@@ -1,4 +1,4 @@
-package com.hackerton.fit.dto;
+package com.hackerton.fit.domain.meal.dto;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
@@ -8,13 +8,13 @@ import lombok.Data;
 @Data
 public class NutritionDataDTO {
     private String descKor;
-    private Float nutrCont1;
-    private Float nutrCont2;
-    private Float nutrCont3;
-    private Float nutrCont4;
-    private Float nutrCont5;
-    private Float nutrCont6;
-    private Float nutrCont7;
-    private Float nutrCont8;
-    private Float nutrCont9;
+    private Float calorie;
+    private Float carbohydrate;
+    private Float protein;
+    private Float province;
+    private Float sugar;
+    private Float salt;
+    private Float cholesterol;
+    private Float saturatedFat;
+    private Float transFat;
 }

@@ -1,7 +1,6 @@
 package com.hackerton.global.infra.jwt;
 
 import com.hackerton.fit.domain.user.dto.User;
-import com.hackerton.fit.domain.user.entity.UserEntity;
 import com.hackerton.fit.domain.user.mapper.UserMapper;
 import com.hackerton.fit.domain.user.repository.UserRepository;
 import com.hackerton.global.exception.custom.jwt.TokenTypeException;
