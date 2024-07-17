@@ -1,5 +1,6 @@
 package com.hackerton.fit.domain.flask.controller;
 
+import com.hackerton.fit.global.properties.FlaskProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ public class DietRecommendationController {
 
     @Autowired
     private RestTemplate restTemplate;
+    private FlaskProperties flaskProperties;
 
     @RequestMapping(value = "/recommendDietFromFlask", method = RequestMethod.POST)
     public ResponseEntity<String> recommendDiet(@RequestBody String requestBody) {

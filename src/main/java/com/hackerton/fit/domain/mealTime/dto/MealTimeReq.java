@@ -10,17 +10,18 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class MealTimeResponse {
+public class MealTimeReq {
     private LocalDate time;
 
     private MealTimeEnums mealTimeEnum;
 
     private NutritionDataDTO meal;
 
-    public MealTimeEntity toEntity(MealEntity mealEntity) {
+    public MealTimeEntity toEntity(MealEntity mealEntity, UserEntity userEntity) {
         return MealTimeEntity.builder()
                 .time(time)
                 .mealTimeEnum(mealTimeEnum)
+                .user(userEntity)
                 .meal(mealEntity)
                 .build();
     }

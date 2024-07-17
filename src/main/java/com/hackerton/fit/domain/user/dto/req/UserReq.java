@@ -20,6 +20,8 @@ public class UserReq {
     @NotBlank(message = "name is required")
     private String name;
 
+    private String gender;
+
     @NotNull(message = "age is required")
     private Long age;
 

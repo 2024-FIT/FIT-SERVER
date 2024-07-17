@@ -21,7 +21,7 @@ application:
 
 flask:
   server:
-    url: http://127.0.0.1:5001
+    url: http://127.0.0.1:5000/recommend_diet
 
 server:
   port: 8080

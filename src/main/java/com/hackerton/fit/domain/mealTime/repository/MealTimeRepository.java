@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface MealTimeRepository extends JpaRepository<MealTimeEntity, Long> {
-    public List<MealTimeEntity> findAllByTimeBetween(LocalDate start, LocalDate end);
-    public List<MealTimeEntity> findAllByTime(LocalDate time);
+    List<MealTimeEntity> findAllByTimeBetween(LocalDate start, LocalDate end);
+    List<MealTimeEntity> findAllByTime(LocalDate time);
 }

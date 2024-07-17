@@ -1,7 +1,9 @@
 package com.hackerton.fit.domain.mealTime.controller;
 
-import com.hackerton.fit.domain.mealTime.dto.MealTimeDTO;
-import com.hackerton.fit.domain.mealTime.dto.MealTimeResponse;
+import com.hackerton.fit.domain.mealTime.dto.DateReq;
+import com.hackerton.fit.domain.mealTime.dto.MealTimeReq;
+import com.hackerton.fit.domain.mealTime.dto.res.CalorieRes;
+import com.hackerton.fit.domain.mealTime.dto.res.MealTimeRes;
 import com.hackerton.fit.domain.mealTime.service.MealTimeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +19,17 @@ public class MealTimeController {
 
     @PostMapping("/save")
     public void insertMealTime(
-            @RequestBody MealTimeResponse mealTimeResponse) {
-        mealTimeService.save(mealTimeResponse);
+            @RequestBody MealTimeReq mealTimeReq) {
+        mealTimeService.save(mealTimeReq);
     }
 
     @GetMapping("/today")
-    public List<MealTimeDTO> getTodayMealTime(@RequestParam LocalDate day) {
+    public List<MealTimeRes> getTodayMealTime(@RequestParam LocalDate day) {
         return mealTimeService.findByTime(day);
+    }
+
+    @GetMapping("/month-calorie")
+    public List<CalorieRes> getMonthCalorieMealTime(@RequestParam LocalDate startDay, @RequestParam LocalDate endDay) {
+        return mealTimeService.findCalories(new DateReq(startDay, endDay));
     }
 }
