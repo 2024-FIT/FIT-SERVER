@@ -32,16 +32,16 @@ public class UserService {
     public void signup(UserReq userReq) {
         try {
             userRepository.save(UserEntity.builder()
-                    .userId(null)
-                    .userPassword(new BCryptPasswordEncoder().encode(userReq.getPassword()))
+                            .id(null)
+                            .userId(userReq.getId())
                     .userName(userReq.getName())
-                    .age(userReq.getAge())
+                    .userPassword(new BCryptPasswordEncoder().encode(userReq.getPassword()))
                     .height(userReq.getHeight())
                     .weight(userReq.getWeight())
+                    .age(userReq.getAge())
                     .activityLevel(userReq.getActivityLevel())
                     .build());
         } catch (Exception e) {
-            // 예외 처리 로직 추가
             throw new RuntimeException("Failed to save user", e);
         }
     }
