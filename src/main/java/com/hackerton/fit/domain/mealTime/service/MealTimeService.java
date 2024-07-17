@@ -8,9 +8,12 @@ import com.hackerton.fit.domain.mealTime.dto.res.CalorieRes;
 import com.hackerton.fit.domain.mealTime.dto.res.MealTimeRes;
 import com.hackerton.fit.domain.mealTime.entity.MealTimeEntity;
 import com.hackerton.fit.domain.mealTime.repository.MealTimeRepository;
+import com.hackerton.fit.domain.user.dto.User;
+import com.hackerton.fit.domain.user.entity.UserEntity;
 import com.hackerton.fit.domain.user.mapper.UserMapper;
 import com.hackerton.fit.domain.user.service.GetCurrentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.web.access.WebInvocationPrivilegeEvaluator;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -24,12 +27,16 @@ public class MealTimeService {
     private final MealService mealService;
     private final GetCurrentService getCurrentService;
     private final UserMapper userMapper;
+    private final WebInvocationPrivilegeEvaluator privilegeEvaluator;
 
 
     public void save(MealTimeReq mealTimeReq) {
+        User user = getCurrentService.getUser().getUser();
+        UserEntity userEntity = userMapper.toJpa(user);
+
         MealEntity meal = mealService.save(mealTimeReq.getMeal());
 
-        mealTimeRepository.save(mealTimeReq.toEntity(meal));
+        mealTimeRepository.save(mealTimeReq.toEntity(meal, userEntity));
     }
 
     public List<CalorieRes> findCalories(DateReq dates) {
