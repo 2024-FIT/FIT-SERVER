@@ -29,9 +29,9 @@ public class UserEntity {
 
     private Float weight;
 
-    private Long age;
-
     private Float activityLevel;
+
+    private Long age;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MealTimeEntity> mealTimeEntities;
