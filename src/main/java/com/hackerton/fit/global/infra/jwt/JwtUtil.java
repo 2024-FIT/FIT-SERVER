@@ -12,10 +12,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 
 @Component
@@ -52,6 +55,7 @@ public class JwtUtil {
     @Transactional
     public Authentication getAuthentication(String accessToken) {
         final Jws<Claims> claims = (Jws<Claims>) getClaims(accessToken);
+        Collection<? extends GrantedAuthority> authorities = Collections.emptyList();
 
         if (isWrongType(claims, TokenType.ACCESS)) {
             throw TokenTypeException.EXCEPTION;
@@ -61,7 +65,7 @@ public class JwtUtil {
 
         User user = userMapper.toDomain(userEntity);
 
-        final CustomMemberDetails details = new CustomMemberDetails(user);
+        final CustomMemberDetails details = new CustomMemberDetails(user, authorities);
 
         return new UsernamePasswordAuthenticationToken(details, null, details.getAuthorities());
     }

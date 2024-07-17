@@ -31,9 +31,11 @@ public class MealTimeService {
 
 
     public void save(MealTimeReq mealTimeReq) {
-        User user = getCurrentService.getUser().getUser();
+        User user = getCurrentService.getMemberDetails().getUser();
         UserEntity userEntity = userMapper.toJpa(user);
 
+//        User user = getCurrentService.getUser();
+//        UserEntity userEntity = userMapper.toJpa(user);
         MealEntity meal = mealService.save(mealTimeReq.getMeal());
 
         mealTimeRepository.save(mealTimeReq.toEntity(meal, userEntity));
