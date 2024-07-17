@@ -20,4 +20,17 @@ public class UserMapper {
                 userEntity.getMealTimeEntities()
         );
     }
+
+    public UserEntity toJpa(User user){
+        return UserEntity.builder()
+                .id(null)
+                .userId(user.userId())
+                .userName(user.userName())
+                .userPassword(user.userPassword())
+                .height(user.height())
+                .weight(user.weight())
+                .activityLevel(user.activityLevel())
+                .age(user.age())
+                .build();
+    }
 }
