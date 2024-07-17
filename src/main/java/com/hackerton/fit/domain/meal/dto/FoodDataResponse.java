@@ -1,4 +1,4 @@
-package com.hackerton.fit.entity;
+package com.hackerton.fit.domain.meal.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -11,7 +11,6 @@ public class FoodDataResponse {
     @JsonProperty("I2790")
     private FoodData foodData;
 
-    // Getters and Setters
     @Data
     public static class FoodData {
         @JsonProperty("total_count")
@@ -23,7 +22,6 @@ public class FoodDataResponse {
         @JsonProperty("RESULT")
         private Result result;
 
-        // Getters and Setters
     }
 
     @Data
@@ -58,7 +56,6 @@ public class FoodDataResponse {
         @JsonProperty("DESC_KOR")
         private String descKor;
 
-        // Getters and Setters
     }
 
     @Data
@@ -69,6 +66,5 @@ public class FoodDataResponse {
         @JsonProperty("CODE")
         private String code;
 
-        // Getters and Setters
     }
 }

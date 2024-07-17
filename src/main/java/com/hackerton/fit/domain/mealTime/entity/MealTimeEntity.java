@@ -26,8 +26,6 @@ public class MealTimeEntity extends BaseTimeEntity {
 
     private LocalDate time;
 
-    private Long allCalorie;
-
     private MealTimeEnums mealTimeEnums;
 
     @ManyToOne
