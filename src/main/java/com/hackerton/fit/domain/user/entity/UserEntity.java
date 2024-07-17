@@ -31,6 +31,8 @@ public class UserEntity {
 
     private Long age;
 
+    private Float activityLevel;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MealTimeEntity> mealTimeEntities;
 }
