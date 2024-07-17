@@ -28,66 +28,32 @@ public class SecurityConfig {
     private final AccessDeniedHandler accessDeniedHandler;
     private final JwtExceptionFilter jwtExceptionFilter;
 
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
-        http
-                .csrf(AbstractHttpConfigurer::disable) // csrf().disable()
-
-                .authorizeHttpRequests(
-                        authorize -> authorize
-                                .requestMatchers("/swagger-ui/**", "/v3/**").permitAll()
-                                .requestMatchers("/auth/**").permitAll()
-                                .requestMatchers("/stomp/**").permitAll()
-                                .anyRequest()
-                                .authenticated()
-                );
-        return http.build();
-    }
-
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-//        http
-//                .httpBasic().disable()
-//                .cors()
-//                .and()
-//                .csrf().disable()
-//                .cors(cors->cors.configurationSource(corsConfigurationSource()))
-//                .sessionManagement()
-//
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//
-//                .and()
-//                .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-//                .addFilterBefore(jwtExceptionFilter, JwtExceptionFilter.class)
-//
-//                .authorizeHttpRequests()
-//                .requestMatchers("/sign-in/**","/refresh/**","/test/**").permitAll()
-//                .requestMatchers("/sign-up").permitAll()
-//                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
-//                .requestMatchers("/user").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin().disable()
-//                .exceptionHandling()
-//                .accessDeniedHandler(accessDeniedHandler);
-//
-//        return http.build();
-//    }
-
-
-
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // SecurityContextHolder의 전략을 InheritableThreadLocal로 설정하여 자식 스레드가 부모 스레드의 보안 컨텍스트를 상속받도록 함
+        SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
 
-        configuration.addAllowedOriginPattern("*");
-        configuration.addAllowedHeader("*");
-        configuration.addAllowedMethod("*");
-        configuration.setAllowCredentials(true);
+        http
+                // CSRF 보호 비활성화
+                .csrf(AbstractHttpConfigurer::disable)
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+                // 요청에 대한 권한 부여 설정
+                .authorizeHttpRequests(authorize -> authorize
+                        // Swagger 관련 URL 패턴에 대해 모든 사용자에게 접근 허용
+                        .requestMatchers(
+                                "/v2/api-docs", "/v3/api-docs", "/v3/api-docs/**",
+                                "/swagger-resources", "/swagger-resources/**",
+                                "/configuration/ui", "/configuration/security",
+                                "/swagger-ui/**", "/webjars/**", "/swagger-ui/index.html"
+                        ).permitAll()
+                        // 기타 특정 URL 패턴에 대해 모든 사용자에게 접근 허용
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/stomp/**").permitAll()
+                        // 그 외의 모든 요청은 인증 필요
+                        .anyRequest().authenticated()
+                );
 
-        return source;
+        // 설정을 완료하고 SecurityFilterChain 객체 반환
+        return http.build();
     }
 }

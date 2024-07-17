@@ -1,7 +1,7 @@
-package com.hackerton.fit.client;
+package com.hackerton.fit.domain.meal.client;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hackerton.fit.entity.FoodDataEntity;
+import com.hackerton.fit.domain.meal.entity.FoodDataEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;

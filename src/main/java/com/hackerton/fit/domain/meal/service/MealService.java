@@ -1,8 +1,8 @@
-package com.hackerton.fit.service;
+package com.hackerton.fit.domain.meal.service;
 
-import com.hackerton.fit.client.MealClient;
-import com.hackerton.fit.dto.FoodDataDto;
-import com.hackerton.fit.entity.FoodDataEntity;
+import com.hackerton.fit.domain.meal.client.MealClient;
+import com.hackerton.fit.domain.meal.dto.FoodDataDto;
+import com.hackerton.fit.domain.meal.entity.FoodDataEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

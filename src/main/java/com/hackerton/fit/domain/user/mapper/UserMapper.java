@@ -16,8 +16,8 @@ public class UserMapper {
                 userEntity.getHeight(),
                 userEntity.getWeight(),
                 userEntity.getActivityLevel(),
-                userEntity.getAge(),
-                userEntity.getMealTimeEntities()
+                userEntity.getAge()
+//                userEntity.getMealTimeEntities()
         );
     }
 }
