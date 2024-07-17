@@ -13,8 +13,9 @@ import java.util.Optional;
 public class MealService {
     private final MealRepository mealRepository;
 
-    public void save(NutritionDataDTO nutritionDataDTO) {
-        mealRepository.save(nutritionDataDTO.toEntity());
+    public MealEntity save(NutritionDataDTO nutritionDataDTO) {
+//        if (nutritionDataDTO.to)
+        return mealRepository.save(nutritionDataDTO.toEntity());
     }
 
     public NutritionDataDTO findById(Long id) {

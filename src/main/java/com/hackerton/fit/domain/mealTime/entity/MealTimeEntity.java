@@ -26,7 +26,7 @@ public class MealTimeEntity extends BaseTimeEntity {
 
     private LocalDate time;
 
-    private MealTimeEnums mealTimeEnums;
+    private MealTimeEnums mealTimeEnum;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
