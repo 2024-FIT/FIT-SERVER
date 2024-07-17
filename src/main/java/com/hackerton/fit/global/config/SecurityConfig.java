@@ -38,6 +38,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/meal/**").permitAll()
                         .requestMatchers("/meal-time/**").permitAll()
+                        .requestMatchers("/api/**").permitAll()
+                        .requestMatchers("/recommendDietFromFlask/**").permitAll()
                         .requestMatchers("/stomp/**").permitAll()
                         .anyRequest().authenticated()
                 );

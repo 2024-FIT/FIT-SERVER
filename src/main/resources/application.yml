@@ -19,5 +19,9 @@ application:
     accessExpiration: 1800000
     refreshExpiration: 1209600000
 
+flask:
+  server:
+    url: http://127.0.0.1:5001
+
 server:
   port: 8080

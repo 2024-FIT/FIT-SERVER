@@ -13,12 +13,16 @@ import com.hackerton.fit.global.infra.secutiry.CustomMemberDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collection;
+import java.util.Collections;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -48,6 +52,7 @@ public class UserService {
 
     public JsonWebTokenResponse auth(AuthenticationRequest request) {
         UserEntity userEntity = userRepository.findByUserId(request.getId());
+        Collection<? extends GrantedAuthority> authorities = Collections.emptyList();
 
         if (userEntity == null) {
             throw new UsernameNotFoundException("User not found with id: " + request.getId());
@@ -58,7 +63,7 @@ public class UserService {
             throw new PasswordWrongException();
         }
 
-        UserDetails userDetails = new CustomMemberDetails(user);
+        UserDetails userDetails = new CustomMemberDetails(user, authorities);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
