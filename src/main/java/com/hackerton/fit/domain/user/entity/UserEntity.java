@@ -21,17 +21,25 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "user_id")
     private String userId;
 
+    @Column(name = "user_name")
     private String userName;
 
+    @Column(name = "user_password")
     private String userPassword;
 
+    @Column(name = "height")
     private Float height;
 
+    @Column(name = "weight")
     private Float weight;
 
+    @Column(name = "activity_level")
     private Float activityLevel;
+
+    @Column(name = "age")
 
     private Long age;
 
