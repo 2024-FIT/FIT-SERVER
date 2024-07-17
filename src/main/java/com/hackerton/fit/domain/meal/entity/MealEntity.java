@@ -1,7 +1,7 @@
 package com.hackerton.fit.domain.meal.entity;
 
 import com.hackerton.fit.domain.mealTime.entity.MealTimeEntity;
-import com.hackerton.global.common.entity.BaseTimeEntity;
+import com.hackerton.fit.global.common.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
