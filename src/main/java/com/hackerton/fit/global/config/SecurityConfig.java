@@ -37,6 +37,7 @@ public class SecurityConfig {
                         ).permitAll()
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/meal/**").permitAll()
+                        .requestMatchers("/meal-time/**").permitAll()
                         .requestMatchers("/stomp/**").permitAll()
                         .anyRequest().authenticated()
                 );
