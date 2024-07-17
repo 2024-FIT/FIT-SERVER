@@ -19,7 +19,9 @@ import java.util.List;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
+
+    private String userId;
 
     private String userName;
 

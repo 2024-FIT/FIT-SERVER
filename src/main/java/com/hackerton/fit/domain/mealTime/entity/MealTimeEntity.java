@@ -3,7 +3,7 @@ package com.hackerton.fit.domain.mealTime.entity;
 import com.hackerton.fit.domain.meal.entity.MealEntity;
 import com.hackerton.fit.domain.mealTime.service.enums.MealTimeEnums;
 import com.hackerton.fit.domain.user.entity.UserEntity;
-import com.hackerton.global.common.entity.BaseTimeEntity;
+import com.hackerton.fit.global.common.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
