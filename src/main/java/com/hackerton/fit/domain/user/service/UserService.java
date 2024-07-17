@@ -2,6 +2,7 @@ package com.hackerton.fit.domain.user.service;
 
 import com.hackerton.fit.domain.user.dto.User;
 import com.hackerton.fit.domain.user.dto.req.UserReq;
+import com.hackerton.fit.domain.user.dto.req.UserUpdateReq;
 import com.hackerton.fit.domain.user.entity.UserEntity;
 import com.hackerton.fit.domain.user.mapper.UserMapper;
 import com.hackerton.fit.domain.user.repository.UserRepository;
@@ -70,5 +71,15 @@ public class UserService {
                 .accessToken(jwtUtil.generateAccessToken(user1.userId()))
                 .refreshToken(jwtUtil.generateRefreshToken(user1.userId()))
                 .build();
+    }
+
+    public UserEntity getCurrentUser(String username) {
+        return userRepository.findByUserId(username);
+    }
+
+    public void update(UserUpdateReq req){
+        UserEntity user = userRepository.findByUserId(req.userId());
+        user.update(req.gender(), req.height(), req.weight(), req.activityLevel(), req.age());
+        userRepository.save(user);
     }
 }

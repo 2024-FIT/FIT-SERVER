@@ -21,7 +21,7 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", unique = true)
     private String userId;
 
     @Column(name = "user_name")
@@ -29,6 +29,9 @@ public class UserEntity {
 
     @Column(name = "user_password")
     private String userPassword;
+
+    @Column(name = "gender")
+    private String gender;
 
     @Column(name = "height")
     private Float height;
@@ -45,4 +48,12 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MealTimeEntity> mealTimeEntities;
+
+    public void update(String gender, Float height, Float weight, Float activityLevel, Long age) {
+        this.gender = gender;
+        this.height = height;
+        this.weight = weight;
+        this.activityLevel = activityLevel;
+        this.age = age;
+    }
 }

@@ -29,7 +29,7 @@ public class MealTimeController {
     }
 
     @GetMapping("/month-calorie")
-    public List<CalorieRes> getMonthCalorieMealTime(@RequestParam DateReq days) {
-        return mealTimeService.findCalories(days);
+    public List<CalorieRes> getMonthCalorieMealTime(@RequestParam LocalDate startDay, @RequestParam LocalDate endDay) {
+        return mealTimeService.findCalories(new DateReq(startDay, endDay));
     }
 }
